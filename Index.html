@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budgetplaner</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0e0c;
+    --surface: #1a1917;
+    --surface2: #242220;
+    --border: #2e2c29;
+    --text: #f0ebe3;
+    --muted: #7a7570;
+    --accent: #c8a96e;
+    --accent2: #e8c98e;
+    --danger: #c96e6e;
+    --good: #6ec896;
+
+    --cat-1: #c8a96e;
+    --cat-2: #6e9ec8;
+    --cat-3: #c86e9e;
+    --cat-4: #6ec896;
+    --cat-5: #c8796e;
+    --cat-6: #9e6ec8;
+    --cat-7: #6ec8c8;
+    --cat-8: #c8c86e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 2rem 2.5rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+
+  .month-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+  }
+
+  .month-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 28px; height: 28px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.15s;
+  }
+  .month-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .month-label {
+    font-size: 0.8rem;
+    color: var(--text);
+    min-width: 80px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    padding: 0 2.5rem;
+  }
+
+  .tab {
+    padding: 0.9rem 1.5rem;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+
+  .tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .tab:hover:not(.active) { color: var(--text); }
+
+  /* MAIN LAYOUT */
+  .main { padding: 2rem 2.5rem; max-width: 900px; }
+
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* QUICK ENTRY */
+  .quick-entry {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  label {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  input, select {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+
+  input:focus, select:focus { border-color: var(--accent); }
+
+  input[type="number"] { max-width: 140px; }
+
+  .add-btn {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 6px;
+    padding: 0.65rem 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: background 0.15s;
+    white-space: nowrap;
+    height: 38px;
+  }
+
+  .add-btn:hover { background: var(--accent2); }
+
+  /* CATEGORY CARDS */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .cat-card:hover { border-color: var(--border); }
+
+  .cat-accent-line {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .cat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+  }
+
+  .cat-name {
+    font-size: 0.8rem;
+    color: var(--text);
+    letter-spacing: 0.04em;
+  }
+
+  .cat-amounts {
+    text-align: right;
+  }
+
+  .cat-spent {
+    font-size: 1.1rem;
+    font-family: 'DM Serif Display', serif;
+  }
+
+  .cat-budget {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .progress-bar {
+    background: var(--surface2);
+    border-radius: 999px;
+    height: 5px;
+    margin-top: 0.8rem;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.4s ease;
+  }
+
+  .remaining {
+    font-size: 0.68rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+
+  .remaining.over { color: var(--danger); }
+
+  /* TRANSACTIONS LIST */
+  .transactions-section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tx-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .tx-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.7rem 1rem;
+    background: var(--surface);
+    border-radius: 7px;
+    font-size: 0.8rem;
+    animation: slideIn 0.2s ease;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .tx-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .tx-desc { flex: 1; color: var(--text); }
+  .tx-cat { color: var(--muted); font-size: 0.7rem; }
+  .tx-amount { font-family: 'DM Serif Display', serif; font-size: 1rem; }
+  .tx-date { color: var(--muted); font-size: 0.7rem; }
+
+  .tx-delete {
+    background: none;
+    border: none;
+    color: var(--border);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: all 0.15s;
+  }
+  .tx-delete:hover { color: var(--danger); background: rgba(201,110,110,0.1); }
+
+  /* OVERVIEW VIEW */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+  }
+
+  .stat-value.good { color: var(--good); }
+  .stat-value.danger { color: var(--danger); }
+  .stat-value.accent { color: var(--accent); }
+
+  /* CHART */
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .chart-title {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .bar-name {
+    font-size: 0.72rem;
+    min-width: 90px;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 22px;
+    background: var(--surface2);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    position: relative;
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+  }
+
+  .bar-budget-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .bar-val {
+    font-size: 0.7rem;
+    min-width: 80px;
+    text-align: right;
+    color: var(--muted);
+  }
+
+  /* BUDGET SETTINGS */
+  .settings-section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .budget-settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .budget-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+  }
+
+  .budget-row-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .budget-row-name {
+    flex: 1;
+    font-size: 0.8rem;
+  }
+
+  .budget-row input {
+    max-width: 110px;
+    font-size: 0.8rem;
+    text-align: right;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .add-cat-section {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .add-cat-section input { max-width: 180px; }
+
+  .secondary-btn {
+    background: var(--surface2);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    height: 38px;
+  }
+  .secondary-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .empty-state {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    padding: 3rem 1rem;
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .header { padding: 1.2rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
+    .main { padding: 1.2rem 1rem; }
+    .tabs { padding: 0 1rem; }
+    .overview-grid { grid-template-columns: 1fr; }
+    .quick-entry { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Budgetplaner</h1>
+  <div class="month-selector">
+    <button class="month-btn" onclick="changeMonth(-1)">‹</button>
+    <span class="month-label" id="monthLabel"></span>
+    <button class="month-btn" onclick="changeMonth(1)">›</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showView('dashboard', this)">Dashboard</button>
+  <button class="tab" onclick="showView('overview', this)">Übersicht</button>
+  <button class="tab" onclick="showView('settings', this)">Kategorien</button>
+</div>
+
+<div class="main">
+
+  <!-- DASHBOARD VIEW -->
+  <div id="view-dashboard" class="view active">
+    <div class="quick-entry">
+      <div class="field">
+        <label>Betrag (CHF)</label>
+        <input type="number" id="inp-amount" placeholder="0.00" min="0" step="0.01" onkeydown="handleKey(event)">
+      </div>
+      <div class="field">
+        <label>Kategorie</label>
+        <select id="inp-cat"></select>
+      </div>
+      <div class="field">
+        <label>Beschreibung</label>
+        <input type="text" id="inp-desc" placeholder="z.B. Restaurant Zentrum" onkeydown="handleKey(event)">
+      </div>
+      <button class="add-btn" onclick="addTransaction()">+ Erfassen</button>
+    </div>
+
+    <div class="categories-grid" id="cat-cards"></div>
+
+    <div class="transactions-section">
+      <h2>Ausgaben diesen Monat</h2>
+      <div class="tx-list" id="tx-list"></div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW VIEW -->
+  <div id="view-overview" class="view">
+    <div class="overview-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Budget</div>
+        <div class="stat-value accent" id="stat-budget">–</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Ausgegeben</div>
+        <div class="stat-value" id="stat-spent">–</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Verbleibend</div>
+        <div class="stat-value" id="stat-remaining">–</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Kategorien im Budget</div>
+        <div class="stat-value good" id="stat-ok">–</div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">Budget vs. Ausgaben — <span id="chart-month"></span></div>
+      <div class="bar-chart" id="bar-chart"></div>
+    </div>
+  </div>
+
+  <!-- SETTINGS VIEW -->
+  <div id="view-settings" class="view">
+    <div class="settings-section">
+      <h2>Monatsbudget pro Kategorie</h2>
+      <div class="budget-settings-list" id="budget-settings"></div>
+
+      <div class="add-cat-section">
+        <div class="field">
+          <label>Neue Kategorie</label>
+          <input type="text" id="new-cat-name" placeholder="z.B. Hobbys">
+        </div>
+        <div class="field">
+          <label>Budget (CHF)</label>
+          <input type="number" id="new-cat-budget" placeholder="200" min="0">
+        </div>
+        <button class="secondary-btn" onclick="addCategory()">Hinzufügen</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────
+const COLORS = ['--cat-1','--cat-2','--cat-3','--cat-4','--cat-5','--cat-6','--cat-7','--cat-8'];
+
+let state = JSON.parse(localStorage.getItem('budgetplaner') || 'null') || {
+  categories: [
+    { id: 1, name: 'Essen & Trinken', budget: 400, color: 0 },
+    { id: 2, name: 'Freizeit', budget: 200, color: 1 },
+    { id: 3, name: 'Kleidung', budget: 150, color: 2 },
+    { id: 4, name: 'Gesundheit', budget: 100, color: 3 },
+    { id: 5, name: 'Verkehr', budget: 120, color: 4 },
+  ],
+  transactions: [],
+  nextId: 100
+};
+
+let currentDate = new Date();
+let currentYear = currentDate.getFullYear();
+let currentMonth = currentDate.getMonth(); // 0-based
+
+function save() {
+  localStorage.setItem('budgetplaner', JSON.stringify(state));
+}
+
+// ── HELPERS ────────────────────────────────────────────
+function monthKey(y, m) { return `${y}-${String(m+1).padStart(2,'0')}`; }
+function colorVal(idx) {
+  return getComputedStyle(document.documentElement).getPropertyValue(COLORS[idx % COLORS.length]).trim();
+}
+function formatCHF(n) {
+  return 'CHF ' + n.toFixed(2).replace('.', '.');
+}
+function monthName(y, m) {
+  return new Date(y, m, 1).toLocaleDateString('de-CH', { month: 'long', year: 'numeric' });
+}
+
+function txForMonth(y, m) {
+  const key = monthKey(y, m);
+  return state.transactions.filter(t => t.month === key);
+}
+
+function spentByCategory(txs) {
+  const map = {};
+  txs.forEach(t => { map[t.catId] = (map[t.catId] || 0) + t.amount; });
+  return map;
+}
+
+// ── NAVIGATION ─────────────────────────────────────────
+function changeMonth(dir) {
+  currentMonth += dir;
+  if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+  if (currentMonth < 0)  { currentMonth = 11; currentYear--; }
+  render();
+}
+
+function showView(name, tab) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  tab.classList.add('active');
+  render();
+}
+
+// ── RENDER ─────────────────────────────────────────────
+function render() {
+  document.getElementById('monthLabel').textContent = monthName(currentYear, currentMonth);
+  renderCategorySelect();
+  renderCatCards();
+  renderTxList();
+  renderOverview();
+  renderSettings();
+}
+
+function renderCategorySelect() {
+  const sel = document.getElementById('inp-cat');
+  sel.innerHTML = state.categories.map(c =>
+    `<option value="${c.id}">${c.name}</option>`
+  ).join('');
+}
+
+function renderCatCards() {
+  const txs = txForMonth(currentYear, currentMonth);
+  const spent = spentByCategory(txs);
+  const container = document.getElementById('cat-cards');
+
+  if (state.categories.length === 0) {
+    container.innerHTML = '<div class="empty-state">Noch keine Kategorien – füge welche unter «Kategorien» hinzu.</div>';
+    return;
+  }
+
+  container.innerHTML = state.categories.map(cat => {
+    const s = spent[cat.id] || 0;
+    const pct = cat.budget > 0 ? Math.min((s / cat.budget) * 100, 100) : 0;
+    const over = s > cat.budget && cat.budget > 0;
+    const color = colorVal(cat.color);
+    const remaining = cat.budget - s;
+
+    return `<div class="cat-card">
+      <div class="cat-accent-line" style="background:${color}"></div>
+      <div class="cat-header">
+        <div class="cat-name">${cat.name}</div>
+        <div class="cat-amounts">
+          <div class="cat-spent" style="color:${color}">${formatCHF(s)}</div>
+          <div class="cat-budget">von ${formatCHF(cat.budget)}</div>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:${pct}%;background:${over ? 'var(--danger)' : color}"></div>
+      </div>
+      <div class="remaining ${over ? 'over' : ''}">
+        ${over ? '⚠ ' + formatCHF(Math.abs(remaining)) + ' überzogen' : formatCHF(remaining) + ' verbleibend'}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderTxList() {
+  const txs = txForMonth(currentYear, currentMonth).slice().reverse();
+  const container = document.getElementById('tx-list');
+
+  if (txs.length === 0) {
+    container.innerHTML = '<div class="empty-state">Noch keine Ausgaben diesen Monat.</div>';
+    return;
+  }
+
+  container.innerHTML = txs.map(t => {
+    const cat = state.categories.find(c => c.id === t.catId);
+    const color = cat ? colorVal(cat.color) : '#888';
+    return `<div class="tx-item">
+      <div class="tx-dot" style="background:${color}"></div>
+      <div class="tx-desc">${t.desc || '–'}
+        <div class="tx-cat">${cat ? cat.name : '?'}</div>
+      </div>
+      <div class="tx-amount" style="color:${color}">${formatCHF(t.amount)}</div>
+      <div class="tx-date">${t.date}</div>
+      <button class="tx-delete" onclick="deleteTransaction(${t.id})">×</button>
+    </div>`;
+  }).join('');
+}
+
+function renderOverview() {
+  const txs = txForMonth(currentYear, currentMonth);
+  const spent = spentByCategory(txs);
+  const totalBudget = state.categories.reduce((s, c) => s + c.budget, 0);
+  const totalSpent = Object.values(spent).reduce((s, v) => s + v, 0);
+  const remaining = totalBudget - totalSpent;
+  const okCount = state.categories.filter(c => (spent[c.id] || 0) <= c.budget).length;
+
+  document.getElementById('stat-budget').textContent = formatCHF(totalBudget);
+  const spentEl = document.getElementById('stat-spent');
+  spentEl.textContent = formatCHF(totalSpent);
+  spentEl.className = 'stat-value ' + (totalSpent > totalBudget ? 'danger' : 'accent');
+  const remEl = document.getElementById('stat-remaining');
+  remEl.textContent = formatCHF(Math.abs(remaining));
+  remEl.className = 'stat-value ' + (remaining < 0 ? 'danger' : 'good');
+  document.getElementById('stat-ok').textContent = `${okCount} / ${state.categories.length}`;
+  document.getElementById('chart-month').textContent = monthName(currentYear, currentMonth);
+
+  const maxVal = Math.max(...state.categories.map(c => Math.max(c.budget, spent[c.id] || 0)), 1);
+  const chart = document.getElementById('bar-chart');
+
+  chart.innerHTML = state.categories.map(cat => {
+    const s = spent[cat.id] || 0;
+    const pct = (s / maxVal) * 100;
+    const budgetPct = (cat.budget / maxVal) * 100;
+    const color = colorVal(cat.color);
+    const over = s > cat.budget;
+    return `<div class="bar-row">
+      <div class="bar-name" title="${cat.name}">${cat.name}</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${pct}%;background:${over ? 'var(--danger)' : color};opacity:0.85"></div>
+        <div class="bar-budget-line" style="left:${budgetPct}%"></div>
+      </div>
+      <div class="bar-val">${formatCHF(s)} <span style="color:var(--muted)">/ ${formatCHF(cat.budget)}</span></div>
+    </div>`;
+  }).join('');
+}
+
+function renderSettings() {
+  const container = document.getElementById('budget-settings');
+  container.innerHTML = state.categories.map((cat, i) => {
+    const color = colorVal(cat.color);
+    return `<div class="budget-row">
+      <div class="budget-row-dot" style="background:${color}"></div>
+      <div class="budget-row-name">${cat.name}</div>
+      <input type="number" value="${cat.budget}" min="0" step="10"
+        onchange="updateBudget(${cat.id}, this.value)" title="Monatsbudget">
+      <button class="tx-delete" onclick="deleteCategory(${cat.id})" title="Löschen">×</button>
+    </div>`;
+  }).join('');
+
+  if (state.categories.length === 0) {
+    container.innerHTML = '<div class="empty-state">Keine Kategorien.</div>';
+  }
+}
+
+// ── ACTIONS ────────────────────────────────────────────
+function handleKey(e) {
+  if (e.key === 'Enter') addTransaction();
+}
+
+function addTransaction() {
+  const amount = parseFloat(document.getElementById('inp-amount').value);
+  const catId = parseInt(document.getElementById('inp-cat').value);
+  const desc = document.getElementById('inp-desc').value.trim();
+
+  if (!amount || amount <= 0) {
+    document.getElementById('inp-amount').focus();
+    return;
+  }
+
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('de-CH', { day: '2-digit', month: '2-digit' });
+
+  state.transactions.push({
+    id: state.nextId++,
+    catId,
+    amount,
+    desc,
+    month: monthKey(currentYear, currentMonth),
+    date: dateStr
+  });
+
+  document.getElementById('inp-amount').value = '';
+  document.getElementById('inp-desc').value = '';
+  document.getElementById('inp-amount').focus();
+
+  save();
+  render();
+}
+
+function deleteTransaction(id) {
+  state.transactions = state.transactions.filter(t => t.id !== id);
+  save();
+  render();
+}
+
+function updateBudget(id, val) {
+  const cat = state.categories.find(c => c.id === id);
+  if (cat) { cat.budget = parseFloat(val) || 0; }
+  save();
+  render();
+}
+
+function addCategory() {
+  const name = document.getElementById('new-cat-name').value.trim();
+  const budget = parseFloat(document.getElementById('new-cat-budget').value) || 0;
+  if (!name) { document.getElementById('new-cat-name').focus(); return; }
+
+  state.categories.push({
+    id: state.nextId++,
+    name,
+    budget,
+    color: state.categories.length % COLORS.length
+  });
+
+  document.getElementById('new-cat-name').value = '';
+  document.getElementById('new-cat-budget').value = '';
+  save();
+  render();
+}
+
+function deleteCategory(id) {
+  state.categories = state.categories.filter(c => c.id !== id);
+  save();
+  render();
+}
+
+// ── INIT ───────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>

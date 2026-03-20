@@ -161,9 +161,16 @@
       "amount": 160,
       "catId": 3,
       "activeMonths": []
+    },
+    {
+      "id": 115,
+      "name": "Laptop",
+      "amount": 1000,
+      "catId": 2,
+      "activeMonths": []
     }
   ],
   "recurring": [],
-  "nextId": 115,
-  "_saved": 1774010327849
+  "nextId": 116,
+  "_saved": 1774010335416
 }

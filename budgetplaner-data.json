@@ -29,6 +29,12 @@
       "name": "Verkehr",
       "budget": 120,
       "color": 4
+    },
+    {
+      "id": 106,
+      "name": "Ferienausgaben",
+      "budget": 500,
+      "color": 5
     }
   ],
   "transactions": [
@@ -88,6 +94,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 106,
-  "_saved": 1774009964256
+  "nextId": 107,
+  "_saved": 1774010157312
 }

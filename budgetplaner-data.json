@@ -82,6 +82,15 @@
       "month": "2026-03",
       "date": "20.03.",
       "fromWish": false
+    },
+    {
+      "id": 107,
+      "catId": 106,
+      "amount": 433,
+      "desc": "Diverse",
+      "month": "2026-03",
+      "date": "20.03.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -94,6 +103,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 107,
-  "_saved": 1774010157312
+  "nextId": 108,
+  "_saved": 1774010170227
 }

@@ -127,6 +127,15 @@
       "month": "2026-03",
       "date": "20.03.",
       "fromWish": false
+    },
+    {
+      "id": 112,
+      "catId": 1,
+      "amount": 14.95,
+      "desc": "Migros diverses",
+      "month": "2026-03",
+      "date": "20.03.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -139,6 +148,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 112,
-  "_saved": 1774010241186
+  "nextId": 113,
+  "_saved": 1774010269601
 }

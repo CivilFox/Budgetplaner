@@ -42,8 +42,16 @@
       "fromWish": false
     }
   ],
-  "wishes": [],
+  "wishes": [
+    {
+      "id": 101,
+      "name": "Kletterschuhe",
+      "amount": 150,
+      "catId": 2,
+      "activeMonths": []
+    }
+  ],
   "recurring": [],
-  "nextId": 101,
-  "_saved": 1774009450254
+  "nextId": 102,
+  "_saved": 1774009468512
 }

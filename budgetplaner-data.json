@@ -40,6 +40,15 @@
       "month": "2026-03",
       "date": "20.03.",
       "fromWish": false
+    },
+    {
+      "id": 102,
+      "catId": 1,
+      "amount": 35,
+      "desc": "Sphères",
+      "month": "2026-03",
+      "date": "20.03.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -52,6 +61,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 102,
-  "_saved": 1774009468512
+  "nextId": 103,
+  "_saved": 1774009882190
 }

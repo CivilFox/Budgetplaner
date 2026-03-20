@@ -100,6 +100,15 @@
       "month": "2026-03",
       "date": "20.03.",
       "fromWish": false
+    },
+    {
+      "id": 109,
+      "catId": 2,
+      "amount": 45.6,
+      "desc": "Bücher",
+      "month": "2026-03",
+      "date": "20.03.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -112,6 +121,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 109,
-  "_saved": 1774010201548
+  "nextId": 110,
+  "_saved": 1774010213686
 }

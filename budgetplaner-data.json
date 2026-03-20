@@ -49,6 +49,15 @@
       "month": "2026-03",
       "date": "20.03.",
       "fromWish": false
+    },
+    {
+      "id": 103,
+      "catId": 1,
+      "amount": 12,
+      "desc": "Resti Hallenband",
+      "month": "2026-03",
+      "date": "20.03.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -61,6 +70,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 103,
-  "_saved": 1774009882190
+  "nextId": 104,
+  "_saved": 1774009899375
 }

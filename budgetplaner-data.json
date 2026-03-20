@@ -1,0 +1,39 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Essen & Trinken",
+      "budget": 400,
+      "color": 0
+    },
+    {
+      "id": 2,
+      "name": "Freizeit",
+      "budget": 200,
+      "color": 1
+    },
+    {
+      "id": 3,
+      "name": "Kleidung",
+      "budget": 150,
+      "color": 2
+    },
+    {
+      "id": 4,
+      "name": "Gesundheit",
+      "budget": 100,
+      "color": 3
+    },
+    {
+      "id": 5,
+      "name": "Verkehr",
+      "budget": 120,
+      "color": 4
+    }
+  ],
+  "transactions": [],
+  "wishes": [],
+  "recurring": [],
+  "nextId": 100,
+  "_saved": 1774009429954
+}

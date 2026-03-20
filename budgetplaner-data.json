@@ -136,6 +136,15 @@
       "month": "2026-03",
       "date": "20.03.",
       "fromWish": false
+    },
+    {
+      "id": 113,
+      "catId": 3,
+      "amount": 24,
+      "desc": "Neues Cap",
+      "month": "2026-03",
+      "date": "20.03.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -148,6 +157,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 113,
-  "_saved": 1774010269601
+  "nextId": 114,
+  "_saved": 1774010301367
 }

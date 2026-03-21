@@ -51,7 +51,7 @@
       "id": 102,
       "catId": 1,
       "amount": 35,
-      "desc": "Sphères",
+      "desc": "SphÃ¨res",
       "month": "2026-03",
       "date": "20.03.",
       "fromWish": false
@@ -105,7 +105,7 @@
       "id": 109,
       "catId": 2,
       "amount": 45.6,
-      "desc": "Bücher",
+      "desc": "BÃ¼cher",
       "month": "2026-03",
       "date": "20.03.",
       "fromWish": false
@@ -172,5 +172,5 @@
   ],
   "recurring": [],
   "nextId": 116,
-  "_saved": 1774010335416
+  "_saved": 1774079251825
 }

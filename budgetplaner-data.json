@@ -172,6 +172,15 @@
       "month": "2026-03",
       "date": "21.03.",
       "fromWish": false
+    },
+    {
+      "id": 119,
+      "catId": 3,
+      "amount": 40,
+      "desc": "T-Shirt",
+      "month": "2026-03",
+      "date": "21.03.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -198,6 +207,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 119,
-  "_saved": 1774105028130
+  "nextId": 120,
+  "_saved": 1774105049262
 }

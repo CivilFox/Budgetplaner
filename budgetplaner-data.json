@@ -154,6 +154,15 @@
       "month": "2026-03",
       "date": "21.03.",
       "fromWish": false
+    },
+    {
+      "id": 117,
+      "catId": 1,
+      "amount": 30,
+      "desc": "Kaffe & Kuchen SG",
+      "month": "2026-03",
+      "date": "21.03.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -180,6 +189,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 117,
-  "_saved": 1774100419036
+  "nextId": 118,
+  "_saved": 1774100434568
 }

@@ -163,6 +163,15 @@
       "month": "2026-03",
       "date": "21.03.",
       "fromWish": false
+    },
+    {
+      "id": 118,
+      "catId": 3,
+      "amount": 129,
+      "desc": "Hemd",
+      "month": "2026-03",
+      "date": "21.03.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -189,6 +198,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 118,
-  "_saved": 1774100434568
+  "nextId": 119,
+  "_saved": 1774105028130
 }

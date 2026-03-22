@@ -192,13 +192,6 @@
       "activeMonths": []
     },
     {
-      "id": 114,
-      "name": "Hemden",
-      "amount": 160,
-      "catId": 3,
-      "activeMonths": []
-    },
-    {
       "id": 115,
       "name": "Laptop",
       "amount": 1000,
@@ -208,5 +201,5 @@
   ],
   "recurring": [],
   "nextId": 120,
-  "_saved": 1774173768955
+  "_saved": 1774173784859
 }

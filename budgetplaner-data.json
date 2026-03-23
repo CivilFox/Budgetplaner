@@ -51,7 +51,7 @@
       "id": 102,
       "catId": 1,
       "amount": 35,
-      "desc": "SphÃÂ¨res",
+      "desc": "SphÃÂÃÂ¨res",
       "month": "2026-03",
       "date": "20.03.",
       "fromWish": false
@@ -105,7 +105,7 @@
       "id": 109,
       "catId": 2,
       "amount": 45.6,
-      "desc": "BÃÂ¼cher",
+      "desc": "BÃÂÃÂ¼cher",
       "month": "2026-03",
       "date": "20.03.",
       "fromWish": false
@@ -181,6 +181,15 @@
       "month": "2026-03",
       "date": "21.03.",
       "fromWish": false
+    },
+    {
+      "id": 120,
+      "catId": 5,
+      "amount": 22.1,
+      "desc": "SBB",
+      "month": "2026-03",
+      "date": "23.03.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -200,6 +209,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 120,
-  "_saved": 1774262567664
+  "nextId": 121,
+  "_saved": 1774262656962
 }

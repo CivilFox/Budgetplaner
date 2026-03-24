@@ -199,6 +199,15 @@
       "month": "2026-03",
       "date": "23.03.",
       "fromWish": false
+    },
+    {
+      "id": 122,
+      "catId": 1,
+      "amount": 12.5,
+      "desc": "Zmittag",
+      "month": "2026-03",
+      "date": "24.03.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -218,6 +227,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 122,
-  "_saved": 1774359539814
+  "nextId": 123,
+  "_saved": 1774359552353
 }

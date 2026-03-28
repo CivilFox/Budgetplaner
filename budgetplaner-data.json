@@ -242,9 +242,16 @@
       "amount": 1000,
       "catId": 2,
       "activeMonths": []
+    },
+    {
+      "id": 125,
+      "name": "Helm",
+      "amount": 160,
+      "catId": 2,
+      "activeMonths": []
     }
   ],
   "recurring": [],
-  "nextId": 125,
-  "_saved": 1774687789927
+  "nextId": 126,
+  "_saved": 1774687913833
 }

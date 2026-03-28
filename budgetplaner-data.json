@@ -226,6 +226,15 @@
       "month": "2026-03",
       "date": "28.03.",
       "fromWish": false
+    },
+    {
+      "id": 126,
+      "catId": 2,
+      "amount": 31,
+      "desc": "LP",
+      "month": "2026-03",
+      "date": "28.03.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -252,6 +261,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 126,
-  "_saved": 1774687913833
+  "nextId": 127,
+  "_saved": 1774689183332
 }

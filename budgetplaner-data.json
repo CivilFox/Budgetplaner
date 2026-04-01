@@ -244,6 +244,15 @@
       "month": "2026-03",
       "date": "01.04.",
       "fromWish": false
+    },
+    {
+      "id": 128,
+      "catId": 1,
+      "amount": 8.6,
+      "desc": "Znacht",
+      "month": "2026-03",
+      "date": "01.04.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -270,6 +279,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 128,
-  "_saved": 1775028725803
+  "nextId": 129,
+  "_saved": 1775028733708
 }

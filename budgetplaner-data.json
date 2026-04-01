@@ -235,6 +235,15 @@
       "month": "2026-03",
       "date": "28.03.",
       "fromWish": false
+    },
+    {
+      "id": 127,
+      "catId": 1,
+      "amount": 12.2,
+      "desc": "SBB",
+      "month": "2026-03",
+      "date": "01.04.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -261,6 +270,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 127,
-  "_saved": 1775028710714
+  "nextId": 128,
+  "_saved": 1775028725803
 }

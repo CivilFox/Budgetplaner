@@ -253,6 +253,15 @@
       "month": "2026-03",
       "date": "01.04.",
       "fromWish": false
+    },
+    {
+      "id": 129,
+      "catId": 2,
+      "amount": 36,
+      "desc": "Kink",
+      "month": "2026-04",
+      "date": "03.04.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -279,6 +288,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 129,
-  "_saved": 1775238176674
+  "nextId": 130,
+  "_saved": 1775238225131
 }

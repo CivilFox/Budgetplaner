@@ -280,6 +280,15 @@
       "month": "2026-04",
       "date": "03.04.",
       "fromWish": false
+    },
+    {
+      "id": 133,
+      "catId": 4,
+      "amount": 67,
+      "desc": "Coiffeur",
+      "month": "2026-04",
+      "date": "03.04.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -306,6 +315,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 133,
-  "_saved": 1775238259737
+  "nextId": 134,
+  "_saved": 1775238267718
 }

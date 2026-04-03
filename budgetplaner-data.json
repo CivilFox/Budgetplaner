@@ -262,6 +262,15 @@
       "month": "2026-04",
       "date": "03.04.",
       "fromWish": false
+    },
+    {
+      "id": 131,
+      "catId": 1,
+      "amount": 11,
+      "desc": "Kiosk Kino",
+      "month": "2026-04",
+      "date": "03.04.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -288,6 +297,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 131,
-  "_saved": 1775238239458
+  "nextId": 132,
+  "_saved": 1775238247114
 }

@@ -289,6 +289,15 @@
       "month": "2026-04",
       "date": "03.04.",
       "fromWish": false
+    },
+    {
+      "id": 134,
+      "catId": 2,
+      "amount": 37,
+      "desc": "Kletterhalle",
+      "month": "2026-04",
+      "date": "08.04.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -315,6 +324,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 134,
-  "_saved": 1775643432628
+  "nextId": 135,
+  "_saved": 1775643478654
 }

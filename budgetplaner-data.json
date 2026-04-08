@@ -298,6 +298,15 @@
       "month": "2026-04",
       "date": "08.04.",
       "fromWish": false
+    },
+    {
+      "id": 135,
+      "catId": 4,
+      "amount": 25,
+      "desc": "Seife",
+      "month": "2026-04",
+      "date": "08.04.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -324,6 +333,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 135,
-  "_saved": 1775643478654
+  "nextId": 136,
+  "_saved": 1775643494928
 }

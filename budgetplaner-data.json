@@ -307,6 +307,15 @@
       "month": "2026-04",
       "date": "08.04.",
       "fromWish": false
+    },
+    {
+      "id": 137,
+      "catId": 2,
+      "amount": 130,
+      "desc": "Helm",
+      "month": "2026-04",
+      "date": "10.04.",
+      "fromWish": true
     }
   ],
   "wishes": [
@@ -326,6 +335,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 136,
-  "_saved": 1775799921147
+  "nextId": 138,
+  "_saved": 1775799930623
 }

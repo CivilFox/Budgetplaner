@@ -343,6 +343,15 @@
       "month": "2026-05",
       "date": "05.05.",
       "fromWish": false
+    },
+    {
+      "id": 141,
+      "catId": 1,
+      "amount": 11,
+      "desc": "Kaffee JeansLife",
+      "month": "2026-05",
+      "date": "05.05.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -362,6 +371,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 141,
-  "_saved": 1777959871774
+  "nextId": 142,
+  "_saved": 1777959884272
 }

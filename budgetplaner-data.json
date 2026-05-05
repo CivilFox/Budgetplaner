@@ -334,6 +334,15 @@
       "month": "2026-05",
       "date": "05.05.",
       "fromWish": false
+    },
+    {
+      "id": 140,
+      "catId": 1,
+      "amount": 14,
+      "desc": "Zmittag Riitplatz",
+      "month": "2026-05",
+      "date": "05.05.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -353,6 +362,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 140,
-  "_saved": 1777959855973
+  "nextId": 141,
+  "_saved": 1777959871774
 }

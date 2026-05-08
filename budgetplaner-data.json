@@ -361,6 +361,15 @@
       "month": "2026-05",
       "date": "08.05.",
       "fromWish": false
+    },
+    {
+      "id": 143,
+      "catId": 5,
+      "amount": 5.9,
+      "desc": "Bus CAMPO",
+      "month": "2026-05",
+      "date": "08.05.",
+      "fromWish": false
     }
   ],
   "wishes": [
@@ -380,6 +389,6 @@
     }
   ],
   "recurring": [],
-  "nextId": 143,
-  "_saved": 1778221700298
+  "nextId": 144,
+  "_saved": 1778221788270
 }
